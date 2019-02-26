@@ -118,11 +118,9 @@ SELECT
 users.first_name AS post_author_first_name, 
 users.last_name AS post_author_last_name, 
 posts.title AS post_title, 
-(SELECT 
-users.username 
-  FROM users 
-  WHERE users.id = comments.user_id) 
-AS comment_author_username, 
+  (SELECT users.username 
+    FROM users 
+    WHERE users.id = comments.user_id) AS comment_author_username, 
 comments.body AS comment_body
   FROM comments
   INNER JOIN posts ON comments.post_id = posts.id
